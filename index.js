@@ -44,7 +44,10 @@ function update(){
                         if(pass!=""&&username!=""&&email!=""&& filter.test(email)){
                             let  login=JSON.parse(localStorage.getItem('user_data'));
                             if(login.some(ele=>{ return ele.email==email})){
-                                alert("data already in xyz")
+                                alert("data already in xyz");
+                                document.getElementById('password').value="";
+                                document.getElementById('name').value="";
+                                document.getElementById('email').value=""
                             }
 
                             else  {  
