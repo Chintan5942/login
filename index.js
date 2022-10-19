@@ -73,7 +73,7 @@ let logout= document.getElementById('logout')
 if(logout){
     logout.addEventListener('click',()=>{
         set_edit=false;
-        window.location.href = "main.html"
+        window.location.href = "index.html"
         console.log(set_edit);
         localStorage.removeItem("a_login")
     })
