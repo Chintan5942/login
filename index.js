@@ -134,20 +134,15 @@ if (submit_e) {
         login_deteil.filter(ele => {
             if (ele.pass == old_pwd) {
                 if (old_pwd != "" && newe!= "") {
-                    data[0].pass = newe;
-                    ele.pass = data[0].pass;
-                    console.log(data[0]);
-                    localStorage.setItem('c_login', JSON.stringify(login_deteil))
-                    alert('Password Successfully Changed')
-                    document.getElementById('newpass').value = "";
-                    document.getElementById("oldpass").value = "";
-                }
-            }
-            else {
-                alert("Old password not match")
-            }
-        })
-        old = JSON.parse(localStorage.getItem('user_data'))
+                    if(newe!=old_pwd){
+                        data[0].pass = newe;
+                        ele.pass = data[0].pass;
+                        console.log(data[0]);
+                        localStorage.setItem('c_login', JSON.stringify(login_deteil))
+                        alert('Password Successfully Changed')
+                        document.getElementById('newpass').value = "";
+                        document.getElementById("oldpass").value = "";
+                        old = JSON.parse(localStorage.getItem('user_data'))
         console.log(old)
         console.log(ary);
         old.map(ele => {
@@ -170,6 +165,19 @@ if (submit_e) {
                 }
             }
         })
+                    }
+                    else{
+                        alert("New Password are not same")
+                        document.getElementById('newpass').value = "";
+                        document.getElementById("oldpass").value = "";
+                    }
+                }
+            }
+            else {
+                alert("Old password not match")
+            }
+        })
+        
     })
 }
 
