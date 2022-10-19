@@ -7,43 +7,66 @@ function getupadate(){
         login =JSON.parse( localStorage.getItem('user_data'))
     } 
 }
-let login=[];
+
 var submit_m= document.getElementById('submit_m');
 if(submit_m){
-    getupadate()
     submit_m.addEventListener('click',update) 
 }
 function update(){
+   
     let pass= document.getElementById('password').value;
     let username= document.getElementById('name').value;
     let email= document.getElementById('email').value;
-    let  login=JSON.parse(localStorage.getItem('user_data'))
     var filter = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+    // console.log(login)
+    if(localStorage.getItem('user_data')==null){
         if(pass!=""&&username!=""&&email!=""){
             if(filter.test(email))
-               {
+            {  
+                login=[];
                 login.push({id:new Date().getTime().toString().slice(9,12),"email":email,"username":username,"pass":pass,})
                 localStorage.setItem("user_data",JSON.stringify(login))
-                document.getElementById('password').value="";
-                document.getElementById('name').value="";
-                document.getElementById('email').value="";
-                window.location.href = "login.html"
-               }
-            else{
+                    document.getElementById('password').value="";
+                    document.getElementById('name').value="";
+                    document.getElementById('email').value="";
+                    // window.location.href = "login.html"
+                } 
+                else {
+                    console.log("error")
                 alert("enter valid email");
                 document.getElementById('password').value="";
                 document.getElementById('name').value="";
                 document.getElementById('email').value="";
+            }          
+        
             }
         }
-        else{
-            alert("Enter username and email  password");
-            document.getElementById('password').value="";
-            document.getElementById('name').value="";
-            document.getElementById('email').value="";
-        }     
-}
-var sub= document.getElementById('sub');
+                    else{
+                        if(pass!=""&&username!=""&&email!=""&& filter.test(email)){
+                            let  login=JSON.parse(localStorage.getItem('user_data'));
+                            if(login.some(ele=>{ return ele.email==email})){
+                                alert("data already in xyz")
+                            }
+
+                            else  {  
+                                let  login=JSON.parse(localStorage.getItem('user_data'));
+                                login.push({id:new Date().getTime().toString().slice(9,12),"email":email,"username":username,"pass":pass,})
+                                localStorage.setItem("user_data",JSON.stringify(login))
+                                    document.getElementById('password').value="";
+                                    document.getElementById('name').value="";
+                                    document.getElementById('email').value="";
+                                    window.location.href = "login.html"
+                                } }
+                                else {
+                                alert("enter valid email");
+                                document.getElementById('password').value="";
+                                document.getElementById('name').value="";
+                                document.getElementById('email').value="";
+                            }            
+            }   
+        }
+        
+        var sub= document.getElementById('sub');
 let set_edit;
 if(sub){
     sub.addEventListener('click',(e)=>{
@@ -60,7 +83,6 @@ if(sub){
                localStorage.setItem('a_login',JSON.stringify(login_deteil));
                if(set_edit==true){
                    window.location.href = "edit.html";}
-                //    console.log(set_edit);
                 }
             }
             else{
@@ -141,6 +163,8 @@ if(submit_e){
                     document.getElementById("submit_e").style.display="none";
                     document.getElementById("lbl_o").style.display="none";
                     document.getElementById("lbl_n").style.display="none";
+                    window.location.href = "index.html"
+                    localStorage.removeItem("a_login")
                 }
             }    
         })
