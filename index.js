@@ -86,7 +86,7 @@ if (sub) {
                 window.location.href="edit.html";
             }
             else {
-                    alert("Enter Email And Password");
+                    alert(" Enter Valid Email And Password");
                    
                 }
           
