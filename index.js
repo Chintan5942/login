@@ -18,7 +18,6 @@ function update(){
     let username= document.getElementById('name').value;
     let email= document.getElementById('email').value;
     var filter = /[^\s@]+@[^\s@]+\.[^\s@]+/;
-    // console.log(login)
     if(localStorage.getItem('user_data')==null){
         if(pass!=""&&username!=""&&email!=""){
             if(filter.test(email))
@@ -29,7 +28,7 @@ function update(){
                     document.getElementById('password').value="";
                     document.getElementById('name').value="";
                     document.getElementById('email').value="";
-                    // window.location.href = "login.html"
+                    window.location.href = "login.html"
                 } 
                 else {
                     console.log("error")
